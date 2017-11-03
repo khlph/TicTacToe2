@@ -1,7 +1,11 @@
+//Size Row and Column
+int rows = 4;
+int columns = 4;
+
 int turn = 1; // 1 = circle 2 = cross
 
 //Mean that what's been tick
-int[][] tictactoe = new int[3][3]; 
+int[][] tictactoe = new int[rows][columns]; 
 
 //No one has win
 int winners = 0;
@@ -26,7 +30,7 @@ void setup(){
 void draw(){
   
   if(newGame == 1){
-    Table();
+    Table(rows,columns);
     newGame = 0;
   }
   
@@ -53,7 +57,7 @@ void draw(){
   }
   
   //Draw
-  if (countturn == 9 && winners == 0 && !stop){ 
+  if (countturn == (rows*columns) && winners == 0 && !stop){ 
     stroke(51);
     background(51);
     fill(255);
@@ -78,22 +82,22 @@ void mousePressed() {
   
   if(winners == 0 && !stop){ // if winners detected don't loop
     
-  for( int column = 1; column <= 3 ; column++){ 
+  for( int row = 1; row <= rows ; row++){ 
     
-    if (((mouseX >= ((column-1)*width)/3) && (mouseX <= (column*width)/3))){
+    if (((mouseX >= ((row-1)*width)/rows) && (mouseX <= (row*width)/rows))){
     
-      for( int row = 1; row <= 3; row++){
+      for( int column = 1; column <= columns; column++){
       
-        if (((mouseY >= ((row-1)*width)/3) && (mouseY <= (row*width)/3))){
+        if (((mouseY >= ((column-1)*height)/columns) && (mouseY <= (column*height)/columns))){
           
           //Check if its has been add or not
-          if( tictactoe[column-1][row-1] != 0) return;
+          if( tictactoe[row-1][column-1] != 0) return;
           
-          tictactoe[column-1][row-1] = turn; 
+          tictactoe[row-1][column-1] = turn; 
           
           checkgame();
           
-          Drawthat((column*2-1)*width/6,(row*2-1)*height/6);
+          Drawthat((row*2-1)*width/(rows*2),(column*2-1)*height/(columns*2));
           
           countturn++;
             }
@@ -111,8 +115,8 @@ void mousePressed() {
     countturn = 0;
     
     //clear tictactoe value to draw next one
-    for( int i = 0 ; i < 3 ; i++){
-      for( int j = 0 ; j < 3 ; j++){
+    for( int i = 0 ; i < rows ; i++){
+      for( int j = 0 ; j < columns ; j++){
         tictactoe[i][j] = 0;}
     }  
   }
@@ -217,29 +221,4 @@ boolean clickedbutton(){
   }
     
   else{ return false; }
-}
-
-void Table(){
-  /* Setup a 3x3 tale*/
-  //Vertical line
-  background(127);
-  pushMatrix();
-  strokeWeight(5);
-  fill(0);
-  translate(width/3, 0);
-  line( 0, 0, 0, height);
-  translate(width/3, 0);
-  line( 0, 0, 0, height);
-  popMatrix();
-  //End Verical line
-  
-  //Horizontal line
-  pushMatrix();
-  translate( 0, height/3);
-  line( 0, 0, width, 0);
-  translate(  0, height/3);
-  line( 0, 0, width, 0);
-  popMatrix();
-  //End Horizontal line
-  /* End Setup 3x3 table*/
 }
