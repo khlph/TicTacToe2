@@ -29,3 +29,32 @@ void Table(int X, int Y){
   //End Horizontal line
   /* End Setup X*Y table*/
 }
+
+void cross(float X, float Y){
+  
+  int x = (width/rows)/2 - 100;
+  
+  pushMatrix();
+  translate( X, Y);
+  
+  strokeWeight(20);
+  stroke(255);
+  noFill();
+  line( -x, -x, x, x);
+  line( -x, x, x, -x);
+  
+  popMatrix();
+ }
+ 
+void circle(float X, float Y){
+  
+  pushMatrix();
+  translate( X, Y); // Reference in middle of the box
+  
+  strokeWeight(20);
+  stroke(255);
+  noFill();
+  ellipse( 0, 0, (width/rows) -50 , (height/columns)-50);
+  
+  popMatrix();
+}

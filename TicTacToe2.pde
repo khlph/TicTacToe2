@@ -173,35 +173,6 @@ void Drawthat(float X, float Y){
     turn = 1;
   }}
 
-void cross(float X, float Y){
-  
-  int x = 50;
-  
-  pushMatrix();
-  translate( X, Y);
-  
-  strokeWeight(25);
-  stroke(255);
-  noFill();
-  line( -x, -x, x, x);
-  line( -x, x, x, -x);
-  
-  popMatrix();
- }
- 
-void circle(float X, float Y){
-  
-  pushMatrix();
-  translate( X, Y); // Reference in middle of the box
-  
-  strokeWeight(25);
-  stroke(255);
-  noFill();
-  ellipse( 0, 0, 100, 100);
-  
-  popMatrix();
-}
-
 void newGamebutton(){
   //Draw button for New Game
   pushMatrix();
