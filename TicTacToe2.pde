@@ -122,11 +122,14 @@ void mousePressed() {
   }
 }
 
-void checkgame(){
+//X indicate which game
+void checkgame(int X){
   
   int k = 0; //Constant
   
+  //3*3
   //Check vertical and horizontal 
+  if( X == 1){
   for( int i = 0 ; i < 3 ; i++){
     
     //Check entire row when pressed
@@ -153,7 +156,37 @@ void checkgame(){
   }
   if( tictactoe[k][k+2] == 2 && tictactoe[k+1][k+1] == 2 && tictactoe[k+2][k] == 2 ){
     winners = 2;
+  }} //end check 3*3
+  
+  //4*4
+  if(X == 2){
+  for( int i = 0 ; i < 4 ; i++){
+    
+    //Check entire row when pressed
+    if( tictactoe[k][i] == turn && tictactoe[k+1][i] == turn && tictactoe[k+2][i] == turn && tictactoe[k+3][i] == turn){
+      //println(turn,"win");
+      winners = turn;
+    }
+    
+    //Check entire column when pressed
+    if( tictactoe[i][k] == turn && tictactoe[i][k+1] == turn && tictactoe[i][k+2] == turn && tictactoe[i][k+3] == turn){
+      //println(turn,"win");
+      winners = turn; 
+    }
   }
+  //Check diagonals
+  if( tictactoe[k][k] == 1 && tictactoe[k+1][k+1] == 1 && tictactoe[k+2][k+2] == 1 && tictactoe[k+3][k+3] == 1 ){
+    winners = 1;
+  }
+  if( tictactoe[k][k] == 2 && tictactoe[k+1][k+1] == 2 && tictactoe[k+2][k+2] == 2 && tictactoe[k+3][k+3] == 2){
+    winners = 2;
+  }
+  if( tictactoe[k][k+2] == 1 && tictactoe[k+1][k+1] == 1 && tictactoe[k+2][k] == 1 && tictactoe[k+3][k] == 1 ){
+    winners = 1;
+  }
+  if( tictactoe[k][k+2] == 2 && tictactoe[k+1][k+1] == 2 && tictactoe[k+2][k] == 2 && tictactoe[k+3][k] == 2){
+    winners = 2;
+  }}
 }
 
 void Drawthat(float X, float Y){
