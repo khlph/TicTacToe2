@@ -1,60 +1,22 @@
-void Table(int X, int Y){
-  /* Setup a XxY tale*/
-  //Vertical line
-  background(127);
-  strokeWeight(5);
-  fill(0);
-  
-  pushMatrix();
-  
-  for( int i = 0 ; i < X ; i++){
-    
-    translate(width/X, 0);
-    line( 0, 0, 0, height);
-  }
-  
-  popMatrix();
-  //End Verical line
-  
-  //Horizontal line
-  pushMatrix();
-  
-  for( int i = 0 ; i < Y ; i++){
-    
-    translate( 0, height/Y);
-    line( 0, 0, width, 0);
-  }
- 
-  popMatrix();
-  //End Horizontal line
-  /* End Setup X*Y table*/
-}
+String x;
 
-void cross(float X, float Y){
+void Endgamepanel(){
   
-  int x = (width/rows)/2 - 100;
+  if(winners == 1){
+    x = "Winner is Circle";
+    background(#FA0000);
+  }
+  else if (winners == 2){
+    x = "Winner is Cross";
+    background(#0075FA);
+  }
+  else {
+    x = "It's Draw";
+    background(127);
+  }
+  fill(255);
+  textSize(30);
+  text(x, width / 2 , height/3);
   
-  pushMatrix();
-  translate( X, Y);
-  
-  strokeWeight(20);
-  stroke(255);
-  noFill();
-  line( -x, -x, x, x);
-  line( -x, x, x, -x);
-  
-  popMatrix();
- }
- 
-void circle(float X, float Y){
-  
-  pushMatrix();
-  translate( X, Y); // Reference in middle of the box
-  
-  strokeWeight(20);
-  stroke(255);
-  noFill();
-  ellipse( 0, 0, (width/rows) -50 , (height/columns)-50);
-  
-  popMatrix();
+  newGamebutton();
 }
